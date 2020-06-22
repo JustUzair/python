@@ -12,7 +12,7 @@ except Exception as e:
 
 dt=datetime.datetime.now()
 try:
-	fh=open('C:\\Users\\Uzair Saiyed\\AppData\\Local\\Programs\\Python\\Python38-32\\password.txt')
+	fh=open('C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python38-32\\password.txt')
 	for line in fh:
 		if line.startswith('Password'):
 			passw=line[9:]
@@ -207,6 +207,6 @@ if __name__ == '__main__':
 		elif 'open zoom' in query:
 			try:
 				speak('Opening Zoom Video Communications')
-				os.startfile('C:\\Users\\Uzair Saiyed\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
+				os.startfile('C:\\Users\\user\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
 			except Exception as e:
 				speak("can't open zoom, something went wrong")
