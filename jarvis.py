@@ -210,3 +210,15 @@ if __name__ == '__main__':
 				os.startfile('C:\\Users\\user\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
 			except Exception as e:
 				speak("can't open zoom, something went wrong")
+		elif 'open epic games' in query:
+			try:
+				speak('Opening Epic Games')
+				os.startfile('F:\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\EpicGamesLauncher.exe')
+			except Exception as e:
+				speak("can't open epic game launcher!")
+		elif 'open code' in query:
+			try: 
+				speak('Opening Visual Studio Code')
+				os.startfile('C:\\users\\Uzair\\AppData\\Local\\Programs\\Microsoft VS Code')
+			except Exception as e:
+				speak('Failed to open Visual Studio Code')
