@@ -8,7 +8,7 @@ import random
 import smtplib
 
 dt=datetime.datetime.now()
-fh=open('C:\\Users\\Uzair Saiyed\\AppData\\Local\\Programs\\Python\\Python38-32\\password.txt')
+fh=open(loc)
 for line in fh:
 	if line.startswith('Password'):
 		passw=line[9:]
