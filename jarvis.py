@@ -1,22 +1,33 @@
-import pyttsx3
-import datetime
-import speech_recognition as sr
-import wikipedia
-import webbrowser
-import os
-import random
-import smtplib
+try:
+	import pyttsx3
+	import datetime
+	import speech_recognition as sr
+	import wikipedia
+	import webbrowser
+	import os
+	import random
+	import smtplib
+except Exception as e:
+	speak("something went wrong,Can't import library")
 
 dt=datetime.datetime.now()
-fh=open(loc)
-for line in fh:
-	if line.startswith('Password'):
-		passw=line[9:]
-	elif line.startswith('Email'):
-		my_email=line[6:]
-fh.close()
+try:
+	fh=open('C:\\Users\\Uzair Saiyed\\AppData\\Local\\Programs\\Python\\Python38-32\\password.txt')
+	for line in fh:
+		if line.startswith('Password'):
+			passw=line[9:]
+		elif line.startswith('Email'):
+			my_email=line[6:]
+	fh.close()
+except Exception as e:
+	speak('Fetching of email and passsword failed')
 songs=[]
-webbrowser.register('chrome',None,webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
+
+try:
+	#set chrome as default browser
+	webbrowser.register('chrome',None,webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
+except Exception as e:
+	speak('Something went wronng!')
 
 engine=pyttsx3.init('sapi5') # initializing speech application programming interface
 voices=engine.getProperty('voices') # get existing voices 
@@ -71,10 +82,12 @@ if __name__ == '__main__':
 	while True:
 		query=takeCommand().lower()
 
-		if 'wikipedia' in query:
-			query=query.replace('wikipedia','')
-			results=wikipedia.summary(query,sentences=2)
-			speak('According to wikipedia')
+		if 'tell me about' in query:
+			if query.startswith('jarvis tell me about'):
+				query=query.replace('jarvis tell me about','')
+			else:
+				query=query.replace('tell me about','')
+			results=wikipedia.summary(query,sentences=3)
 			speak(results)
 
 		elif 'goodbye' in query:
@@ -103,8 +116,11 @@ if __name__ == '__main__':
 			speak('it is Jarvis, Sir')
 		
 		elif 'open youtube' in query:
-			speak('Opening Youtube')
-			webbrowser.get('chrome').open('youtube.com')
+			try:
+				speak('Opening Youtube')
+				webbrowser.get('chrome').open('youtube.com')
+			except Exception as e:
+				speak('Command execution failed')
 
 		elif 'open google' in query:
 			speak('Opening Google')
@@ -154,23 +170,43 @@ if __name__ == '__main__':
 			speak("It's Okay!")
 
 		elif 'open chrome' in query:
-			speak('Opening Google Chrome')
-			os.startfile('C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe')
+			try:
+				speak('Opening Google Chrome')
+				os.startfile('C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe')
+			except Exception as e:
+				speak('Cannot open Google Chrome')
 
 		elif 'open sublime' in query:
-			speak('Opening Sublime Text Editor..')
-			os.startfile('C:\\Program Files\\Sublime Text 3\\sublime_text.exe')
+			try:
+				speak('Opening Sublime Text Editor..')
+				os.startfile('C:\\Program Files\\Sublime Text 3\\sublime_text.exe')	
+			except Exception as e:
+				speak('Cannot open sublime text editor')
 
 		elif 'open wynk' in query:
-			speak('Opening Wynk Music')
-			webbrowser.get('chrome').open('wynk.com')
+			try:
+				speak('Opening Wynk Music')
+				webbrowser.get('chrome').open('wynk.com')
+			except Exception as e:
+				speak('Cannot open wynk music')
 
 		elif 'open spotify' in query:
-			speak('Opening spotify')
-			webbrowser.get('chrome').open('spotify.com')
-			
+			try:
+				speak('Opening spotify')
+				webbrowser.get('chrome').open('spotify.com')
+			except Exception as e:
+				speak('Cannot open spotify')
 		elif 'open a website' in query:
-			speak('What website do you want me to open?')
-			url=input('Enter website Url: ')
-			webbrowser.get('chrome').open(url)
-			speak(f'Opening {url}')
+			try:
+				speak('What website do you want me to open?')
+				url=input('Enter website Url: ')
+				webbrowser.get('chrome').open(url)
+				peak(f'Opening {url}')
+			except Exception as e:
+				speak(f'Cannot open {url}')
+		elif 'open zoom' in query:
+			try:
+				speak('Opening Zoom Video Communications')
+				os.startfile('C:\\Users\\Uzair Saiyed\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
+			except Exception as e:
+				speak("can't open zoom, something went wrong")
